@@ -1,23 +1,36 @@
-toTranslate = {}
-translationBase = {}
+to_translate_dict = {}
+translate_base_dict = {}
+success_lines = []
+errors_lines = []
 
-toTranslateFile = "toTranslate.txt"
-translationBaseFile = "translateBase.txt"
-resultFile = open("result.txt", "w")
-otherFile = open("other.txt", "w")
+print("Metin2 translate project : client version 1.0")
 
-with open(toTranslateFile, "r") as toTranslateFile:
-	for lines in toTranslateFile:
-		toTranslateLine = lines.split("	")
-		toTranslate[toTranslateLine[0]] = toTranslateLine[1]
+print("Loading to_translate.txt...")
+with open("to_translate.txt", "r") as file:
+    for line in file.readlines():
+        line = line.split("\t")
+        to_translate_dict[line[0]] = line[1]
 
-with open(translationBaseFile, "r") as translationBaseFile:
-	for lines in translationBaseFile:
-		translationBaseLine = lines.split("	")
-		translationBase[translationBaseLine[0]] = translationBaseLine[1]
+print("Loading translate_base.txt...")
+with open("translate_base.txt", "r") as file:
+    for line in file.readlines():
+        line = line.split("\t")
+        translate_base_dict[line[0]] = line[1]
 
-for key, value in toTranslate.items():
-	if key in translationBase:
-		resultFile.write(key + "	" + translationBase[key])
-	else:
-		otherFile.write(key + "	" + toTranslate[key])
+with open("result.txt", "w") as result_file:
+    with open("autre.txt", "w") as other_files:
+        to_translate_set = set(to_translate_dict)
+        translate_base_set = set(translate_base_dict)
+
+        inter = to_translate_set.intersection(translate_base_set)
+
+        print("Making...")
+        for key in sorted(to_translate_dict):
+            if key in inter:
+                success_lines.append("{0}\t{1}\n".format(key, translate_base_dict[key].replace("\n", "")))
+            else:
+                errors_lines.append("{0}\t{1}\n".format(key, to_translate_dict[key].replace("\n", "")))
+
+        other_files.writelines(errors_lines)
+        result_file.writelines(success_lines)
+print("Done.")
