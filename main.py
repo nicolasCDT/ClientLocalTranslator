@@ -20,7 +20,7 @@ with open("translate_base.txt", "r") as file:
             translate_base_dict[line[0]] = "\t".join(line[1:])
 
 with open("result.txt", "w") as result_file:
-    with open("autre.txt", "w") as other_files:
+    with open("other.txt", "w") as other_files:
         to_translate_set = set(to_translate_dict)
         translate_base_set = set(translate_base_dict)
 
