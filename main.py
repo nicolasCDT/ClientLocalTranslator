@@ -9,13 +9,15 @@ print("Loading to_translate.txt...")
 with open("to_translate.txt", "r") as file:
     for line in file.readlines():
         line = line.split("\t")
-        to_translate_dict[line[0]] = line[1]
+        if len(line) != 1:
+            to_translate_dict[line[0]] = "\t".join(line[1:])
 
 print("Loading translate_base.txt...")
 with open("translate_base.txt", "r") as file:
     for line in file.readlines():
         line = line.split("\t")
-        translate_base_dict[line[0]] = line[1]
+        if len(line) != 1:
+            translate_base_dict[line[0]] = "\t".join(line[1:])
 
 with open("result.txt", "w") as result_file:
     with open("autre.txt", "w") as other_files:
