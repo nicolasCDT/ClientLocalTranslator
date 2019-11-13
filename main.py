@@ -27,7 +27,7 @@ with open("result.txt", "w") as result_file:
         inter = to_translate_set.intersection(translate_base_set)
 
         print("Making...")
-        for key in sorted(to_translate_dict):
+        for key in to_translate_dict:
             if key in inter:
                 success_lines.append("{0}\t{1}\n".format(key, translate_base_dict[key].replace("\n", "")))
             else:
