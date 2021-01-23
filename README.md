@@ -1,4 +1,4 @@
-# Metin2Work - Game ClientLocalTranslator
+# ClientLocalTranslator
 
 With this system you can translate your Client. In particular locale_game.txt and locale_interface.txt
 
@@ -23,7 +23,7 @@ USE "PAUSE" for the keep open the terminal.
 
 ## Authors
 
-* Takuma - [Metin2Work](https://github.com/devTakuma)
+* Takuma - [Mail](mailto:work.takuma@gmail.com) - Discord: Takuma#0075
 
 ## License
 
